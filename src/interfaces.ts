@@ -44,6 +44,8 @@ export interface Files {
 export interface HandlebarContextCoverage {
   package: string;
   base_coverage: string;
+  /** Plain base percentage without emoji, e.g. "70.76%" */
+  base_coverage_plain?: string;
   new_coverage?: string;
   difference?: string;
   /** Plain percentage for summary line only (no emoji), e.g. "0%" or "-1.51%" */
@@ -57,6 +59,7 @@ export interface HandlebarContext {
   new_coverage?: string;
   negative_difference_threshold?: string | null;
   coverage: HandlebarContextCoverage[];
+  changed_coverage?: HandlebarContextCoverage[];
   overall_coverage: HandlebarContextCoverage;
   coverage_by_top_dir?: HandlebarContextCoverage[];
   inputs: Inputs;

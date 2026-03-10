@@ -416,6 +416,9 @@ export async function generateMarkdown(
   };
 
   context.show_package_coverage = !skipPackageCoverage;
+  context.changed_coverage = context.coverage.filter(
+    row => row.difference && !row.difference.startsWith('⚪')
+  );
 
   if (badge) {
     context.coverage_badge = `https://img.shields.io/badge/${encodeURIComponent(
@@ -585,6 +588,7 @@ export function addOverallRow(
       0,
       overallCoverageFailThreshold
     )}`,
+    base_coverage_plain: `${baseCoverage.coverage}%`,
     new_coverage: `${colorizePercentageByThreshold(
       headCoverage.coverage,
       0,
